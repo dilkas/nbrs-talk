@@ -58,25 +58,31 @@
 \begin{document}
 \maketitle
 
+\begin{frame}{Overview}
+  \begin{figure}
+    \centering
+    \includegraphics[height=0.5\textheight]{summer-vacation.jpg}
+  \end{figure}
+  \pause
+  \begin{itemize}
+  \item How to use bigraphs to model situations with decisions and rewards?
+  \item Examples in modelling movement
+  \item A full picture of bigraphs: from code to visualisations to inner workings
+  \end{itemize}
+\end{frame}
+
 \begin{frame}{Motivation}
   \begin{columns}[t]
-    \column{0.5\textwidth}
-    \centering
-    \begin{overlayarea}{\textwidth}{0.5\textheight}
-      \includegraphics<-2>[width=\textwidth]{uav.jpg}
-      \includegraphics<3->[width=\textwidth]{drone.jpg}
-    \end{overlayarea}
-    \begin{overlayarea}{\textwidth}{0.5\textheight}
-      \includegraphics<-3>[width=\textwidth]{underwater.jpg}
-      \includegraphics<4->[width=\textwidth]{boat.png}
-    \end{overlayarea}
-    \column{0.5\textwidth}
-    \centering
-    \begin{overlayarea}{\textwidth}{0.5\textheight}
-      \includegraphics<1>[width=\textwidth]{ground.jpg}
-      \includegraphics<2->[width=\textwidth]{car.jpg}
-    \end{overlayarea}
-    \includegraphics[width=\textwidth]{rover.jpg}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{drone.jpg}
+      \includegraphics[width=\textwidth]{underwater.jpg}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{car.jpg}
+      \includegraphics[width=\textwidth]{rover.jpg}
+    \end{column}
   \end{columns}
 \end{frame}
 
@@ -114,10 +120,8 @@
 \begin{frame}{Collecting Objects in a Grid}
   \begin{itemize}
   \item Each cell is either visited or unvisited.
-    \pause
   \item When entering an unvisited cell, with probability $p$ the agent receives
     an object.
-    \pause
   \item Once a set number of objects is collected, the agent heads home.
   \end{itemize}
 \end{frame}
@@ -260,7 +264,7 @@
     \pause
     \begin{itemize}
     \item Caveat: one rule can sometimes be applied in multiple ways
-    \item In that case, each outcome is equally likely
+    \item In that case, all outcomes are equally likely
     \end{itemize}
     \pause
   \item Either:
@@ -338,25 +342,25 @@ big initial = Visited{v}
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}{Reaction Rule: Go West and Collect an Object}
-  \begin{columns}
-    \begin{column}{0.45\textwidth}
-      \begin{figure}
-        \centering
-        \includegraphics[width=\textwidth]{../models/agent1/westObject_lhs.pdf}
-      \end{figure}
-    \end{column}
-    \begin{column}{0.1\textwidth}
-      $\xrightarrowRHD{p}$
-    \end{column}
-    \begin{column}{0.45\textwidth}
-      \begin{figure}
-        \centering
-        \includegraphics[width=\textwidth]{../models/agent1/westObject_rhs.pdf}
-      \end{figure}
-    \end{column}
-  \end{columns}
-\end{frame}
+%\begin{frame}{Reaction Rule: Go West and Collect an Object}
+%  \begin{columns}
+%    \begin{column}{0.45\textwidth}
+%      \begin{figure}
+%        \centering
+%        \includegraphics[width=\textwidth]{../models/agent1/westObject_lhs.pdf}
+%      \end{figure}
+%    \end{column}
+%    \begin{column}{0.1\textwidth}
+%      $\xrightarrowRHD{p}$
+%    \end{column}
+%    \begin{column}{0.45\textwidth}
+%      \begin{figure}
+%        \centering
+%        \includegraphics[width=\textwidth]{../models/agent1/westObject_rhs.pdf}
+%      \end{figure}
+%    \end{column}
+%  \end{columns}
+%\end{frame}
 
 \begin{frame}{A Tale of Schr\"{o}dinger's Wall...}
   \begin{figure}
@@ -424,7 +428,6 @@ big initial = Visited{v}
   \item Controls
     \begin{itemize}
     \item \texttt{Agent, Cell, Directions, \alert{Goal}, \alert{Node}}
-      \pause
     \item \texttt{North, East, West, South}
     \item no \texttt{Object}, no \texttt{Visited/Unvisited}
     \end{itemize}
@@ -441,7 +444,7 @@ big initial = Visited{v}
     \pause
   \item Predicate
     \begin{itemize}
-    \item is \texttt{Agent} and \texttt{Goal} in the same cell?
+    \item are \texttt{Agent} and \texttt{Goal} in the same cell?
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -477,28 +480,7 @@ big initial = Visited{v}
   \end{tikzpicture}
 \end{frame}
 
-\begin{frame}{Initial State}
-  \begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{../models/agent2/initial.pdf}
-  \end{figure}
-\end{frame}
-
-\begin{frame}{Opening the Door}
-  \begin{figure}
-    \centering
-    \includegraphics{../models/agent2/closedDoor_lhs.pdf}
-  \end{figure}
-\end{frame}
-
-\begin{frame}{Opening the Door}
-  \begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{../models/agent2/closedDoor_rhs.pdf}
-  \end{figure}
-\end{frame}
-
-\begin{frame}{Entering/Leaving a Room}
+\begin{frame}{Reaction Rules for Entering/Leaving a Room}
   \begin{columns}
     \begin{column}{0.45\textwidth}
       \begin{figure}
@@ -558,6 +540,27 @@ end
       \path[->] (text) edge[blue] (2.9, 5.3);
     \end{tikzpicture}
   }
+\end{frame}
+
+\begin{frame}{Initial State}
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{../models/agent2/initial.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Opening the Door}
+  \begin{figure}
+    \centering
+    \includegraphics{../models/agent2/closedDoor_lhs.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Opening the Door}
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{../models/agent2/closedDoor_rhs.pdf}
+  \end{figure}
 \end{frame}
 
 \begin{frame}[fragile]{Tracking Time with State Rewards}
@@ -659,10 +662,8 @@ end
   \item One door per cell
     \begin{itemize}
     \item Otherwise which door the agent uses would be random
-      \pause
     \item Workaround: use more cells
     \end{itemize}
-    \pause
   \item Two ideas in one: discovering space \& entering an inner space
   \end{itemize}
 \end{frame}
@@ -677,13 +678,13 @@ end
 \begin{frame}{A New Interface}
   \begin{itemize}
   \item Similar workflow to other Jupyter notebooks
-  \item<2-> Syntax highlighting
-  \item<3-> Visualisation of bigraphs and reaction rules
-  \item<4-> Full and partial transition diagrams
+  \item Syntax highlighting
+  \item Visualisation of bigraphs and reaction rules
+  \item Full and partial transition diagrams
     \begin{itemize}
     \item with state bigraph preview on mouseover
     \end{itemize}
-  \item<5-> Backwards compatible to run OCaml code
+  \item Backwards compatible to run OCaml code
   \end{itemize}
   \begin{block}{Available at}
     \url{https://github.com/dilkas/bigrapher-jupyter}
@@ -717,9 +718,7 @@ end
     \pause
     \con Some simple ideas are impossible or hard to implement
     \begin{itemize}
-      \pause
     \item adding/subtracting integers
-      \pause
     \item set membership check
     \end{itemize}
   \end{itemize}
